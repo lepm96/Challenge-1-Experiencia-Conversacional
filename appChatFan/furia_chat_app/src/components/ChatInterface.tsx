@@ -8,18 +8,6 @@ interface Message {
   sender: "user" | "bot";
 }
 
-// 1. Função que busca partidas da FURIA via PandaScore
-type Match = {
-  name: string;
-  begin_at: string;
-  status: string;
-  opponents: {
-    opponent: {
-      name: string;
-    };
-  }[];
-};
-
 const getFuriaMatches = async (): Promise<string> => {
   // Dados simulados do campeonato de 10 a 18 de maio
   const simulatedMatches = [
@@ -222,18 +210,23 @@ const getBotResponse = async (input: string): Promise<string> => {
     lower.includes("estatísticas") ||
     lower.includes("stats") ||
     lower.includes("desempenho") ||
-    lower.includes("estatisticas")
+    lower.includes("estatisticas") ||
+    lower.includes("última partida") ||
+    lower.includes("ultimo jogo") ||
+    lower.includes("último jogo") ||
+    lower.includes("última performance") ||
+    lower.includes("desempenho recente")
   ) {
     return await getMatchStats();
   }
 
   if (
-    lower.includes('mais informações') ||
-    lower.includes('falar com alguém') ||
-    lower.includes('whatsapp') ||
-    lower.includes('quero falar com alguém') ||
-    lower.includes('contato') ||
-    lower.includes('atendimento')
+    lower.includes("mais informações") ||
+    lower.includes("falar com alguém") ||
+    lower.includes("whatsapp") ||
+    lower.includes("quero falar com alguém") ||
+    lower.includes("contato") ||
+    lower.includes("atendimento")
   ) {
     return `📲 Para falar com a equipe da FURIA, clique no botão do WhatsApp no canto inferior direito da tela. Estamos prontos para te atender!`;
   }
@@ -368,11 +361,8 @@ const ChatInterface: React.FC = () => {
     setIsLoading(false);
   };
 
-
- 
   return (
-  
-    <div className="flex flex-col h-full bg-black text-white border-4 border-gray-500 rounded-lg opacity-69 ">
+    <div className="flex flex-col h-full bg-black text-white border-4 border-gray-500 rounded-lg opacity-69">
       <div className="flex-grow overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-black">
         {messages.map((msg, index) => (
           <div
@@ -452,7 +442,6 @@ const ChatInterface: React.FC = () => {
         </button>
       </div>
     </div>
-    
   );
 };
 
