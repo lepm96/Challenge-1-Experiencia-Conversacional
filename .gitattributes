@@ -1,0 +1,2 @@
+appChatFan/furia_chat_app/node_modules/@cloudflare/workerd-windows-64/bin/workerd.exe filter=lfs diff=lfs merge=lfs -text
+appChatFan/furia_chat_app/node_modules/@next/swc-win32-x64-msvc/next-swc.win32-x64-msvc.node filter=lfs diff=lfs merge=lfs -text
